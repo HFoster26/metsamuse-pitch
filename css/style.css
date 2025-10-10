@@ -431,3 +431,54 @@ body {
         align-items: center;
     }
 }
+/* ============================================
+   INNER PAGES STYLES - Added for subpages
+   ============================================ */
+
+/* Page Header for Inner Pages */
+.page-header {
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, var(--light) 0%, #e8ebe6 100%);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--gray);
+}
+
+/* Content Section for Inner Pages */
+.content-section {
+    padding: 4rem 0;
+    background: var(--white);
+}
+
+.content-section h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.content-section h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.content-section p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.content-section ul, .content-section ol {
+    margin-bottom: 1.5rem;
+    margin-left: 2rem;
+}
+
+.content-section li {
+    margin-bottom: 0.5rem;
+}
