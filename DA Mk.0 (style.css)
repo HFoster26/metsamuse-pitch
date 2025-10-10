@@ -1,0 +1,72 @@
+/* Basic Reset and Typography */
+ {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.hero-image {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: #2d5a3d;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Navigation */
+.main-nav {
+    margin: 2rem 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    background-color: #2d5a3d;
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.main-nav a:hover {
+    background-color: #4a7c59;
+}
+
+/* Content Area */
+.content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #333;
+    color: white;
+    margin-top: 3rem;
+}
