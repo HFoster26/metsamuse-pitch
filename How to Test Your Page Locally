@@ -1,0 +1,35 @@
+## How to Test Your Page Locally
+
+### Method 1: Direct Browser Opening (Easiest)
+1. Find your HTML file in your file explorer/finder
+2. Double-click the HTML file
+3. It will open in your default web browser
+4. To see changes: save your file, then refresh the browser (Ctrl+R or Cmd+R)
+
+### Method 2: Drag and Drop
+1. Open any web browser (Chrome, Firefox, Safari)
+2. Drag your HTML file from file explorer into the browser window
+3. Refresh after making changes
+
+### Method 3: Right-Click Method
+1. Right-click on your HTML file
+2. Select "Open with" → Choose your browser
+3. Refresh to see updates
+
+### Method 4: VS Code Live Preview (If Using VS Code)
+1. Install "Live Server" extension in VS Code
+2. Right-click your HTML file in VS Code
+3. Select "Open with Live Server"
+4. Page will auto-refresh when you save!
+
+### What to Check
+- [ ] Page loads without errors
+- [ ] All text is visible
+- [ ] Images appear (if added)
+- [ ] Links go to the right pages
+- [ ] Page looks okay on different browser sizes
+
+### Common Issues
+- **Images not showing?** Check your file path: `images/filename.png`
+- **CSS not working?** Make sure it's linked: `<link rel="stylesheet" href="css/style.css">`
+- **Links broken?** Use `.html` extension: `href="about.html"` not just `href="about"`
