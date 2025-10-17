@@ -3,8 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> "About" - MetsäMuse</title>
+    <title>About - MetsäMuse</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Hero background image */
+        .page-header {
+            position: relative;
+            background-image: url('images/websitetoppicture.png');
+            background-size: cover;
+            /* nudge image slightly down so more of the subjects' bodies are visible */
+            background-position: center 40%;
+            background-repeat: no-repeat;
+            background-color: #2d5016; /* fallback color */
+            min-height: 360px; /* reduced header height (about half) */
+            display: flex;
+            align-items: center; /* vertical center */
+            justify-content: center; /* horizontal center */
+            text-align: center;
+            padding: 0 1rem; /* small horizontal padding */
+        }
+        
+        /* Background image layer */
+        .page-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('images/websitetoppicture.png');
+            background-size: 66% auto; /* smaller image (approx half of previous) */
+            /* match the main position, slightly lower to reveal a bit more of the torso */
+            background-position: center 38%;
+            background-repeat: no-repeat;
+            transform: translateZ(0);
+            z-index: 0;
+        }
+
+        /* Overlay layer for contrast */
+        .page-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 1400px) {
+            .page-header { min-height: 320px; }
+            /* nudge down slightly on large tablets / small desktops to show more body */
+            .page-header { background-position: center 45%; }
+            .page-header::before { background-size: 80% auto; background-position: center 43%; }
+        }
+
+        @media (max-width: 1024px) {
+            .page-header { min-height: 300px; padding: 2.5rem 1rem; }
+            /* on narrower screens, nudge image down to include more torso */
+            .page-header { background-position: center 50%; }
+            .page-header::before { background-size: 100% auto; background-position: center 48%; }
+        }
+
+        @media (max-width: 768px) {
+            .page-header { min-height: 220px; padding: 1.5rem 1rem; }
+            /* mobile: lower the crop so a sliver of the body shows below the face */
+            .page-header { background-position: center 28%; }
+            .page-header::before { background-size: cover; background-position: center 26%; }
+        }
+
+        .page-header h1,
+        .page-header .page-subtitle {
+            color: white;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .page-header h1 { font-size: 3.6rem; margin: 0; }
+        .page-header .page-subtitle { font-size: 1.25rem; margin-top: 0.6rem; }
+
+        @media (max-width: 1024px) {
+            .page-header h1 { font-size: 2.8rem; }
+            .page-header .page-subtitle { font-size: 1.1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .page-header .page-subtitle { font-size: 1rem; }
+        }
+
+        /* Additional styles specific to about page */
+        .content-section {
+            /* translucent light-green background under the hero */
+            background: rgba(74, 124, 44, 0.10); /* #4a7c2c at 10% opacity - slightly darker */
+            padding: 2.5rem 0; /* vertical spacing for the section */
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border-top: 4px solid #4a7c2c;
+        }
+
+        .intro-section h2 {
+            color: #2d5016;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Flip Card */
+        .flip-card-container {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .flip-card {
+            width: 420px;
+            max-width: 92vw;
+            height: 560px;
+            perspective: 1200px;
+        }
+
+        @media (max-width: 520px) {
+            .flip-card { height: 520px; }
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .panel {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 16px;
+            border: 1px solid #dfe9e3;
+            background: #fff;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background: linear-gradient(145deg, #ffffff, #f3faf6);
+            padding: 1.4rem;
+            justify-content: center;
+            text-align: center;
+            color: #0b2718;
+        }
+
+        .back {
+            background: linear-gradient(145deg, #eaf7f1, #ffffff);
+            transform: rotateY(180deg);
+            padding: 1.2rem 1.1rem;
+            overflow: auto;
+            color: #0b2718;
+        }
+
+        .panel h3 {
+            margin: 0.2rem 0 0.8rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2d5016;
+            text-align: center;
+        }
+
+        .front p,
+        .back p {
+            margin: 0.55rem 0;
+            line-height: 1.7;
+            font-size: 1.02rem;
+            color: #555;
+        }
+
+        .flip-tip {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #6a8f7b;
+        }
+
+        .actions {
+            margin-top: 0.9rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .btn-flip {
+            appearance: none;
+            border: 1px solid #4a7c2c;
+            background: #4a7c2c;
+            color: #fff;
+            border-radius: 12px;
+            padding: 0.55rem 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-flip.secondary {
+            background: #fff;
+            color: #4a7c2c;
+        }
+
+        .btn-flip:focus {
+            outline: 2px solid #4a7c2c;
+            outline-offset: 2px;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            margin: 3rem 0;
+        }
+
+        .partners-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .partner-cards {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 900px) {
+            .partner-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .p-card {
+            background: #fff;
+            border: 1px solid #e1eee8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            align-items: start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .p-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .p-card img {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            object-fit: contain;
+            border: 1px solid #e1eee8;
+        }
+
+        .p-card h3 {
+            margin: 0.1rem 0 0.25rem;
+            font-size: 1.2rem;
+            color: #2d5016;
+        }
+
+        .p-card small {
+            display: block;
+            color: #4a7c2c;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .p-card p {
+            margin: 0.25rem 0 0;
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.97rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin: 3rem 0;
+        }
+
+        .team-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-member {
+            background: #fff;
+            border: 1px solid #e1eee8;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a7c2c;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            color: #2d5016;
+            margin: 0.5rem 0;
+            font-weight: 700;
+        }
+
+        .team-member p {
+            color: #666;
+            font-size: 1rem;
+            margin: 0.3rem 0;
+        }
+
+        .team-member small {
+            color: #4a7c2c;
+            display: block;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -24,10 +386,10 @@
             </div>
             <div class="nav-menu">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
+                <a href="about.html" class="nav-link">About</a>
                 <a href="features.html" class="nav-link">Features</a>
                 <a href="audience.html" class="nav-link">Audience</a>
-                <a href="team.html" class="nav-link">Team</a>
+                <a href="background.html" class="nav-link">Background</a>
             </div>
             <div class="mobile-toggle">
                 <span></span>
@@ -40,23 +402,139 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>"About MetsäMuse"</h1>
-            <p class="page-subtitle">"Bridging Technology and Forest Heritage"</p>
+            <h1>About MetsäMuse</h1>
+            <p class="page-subtitle">A Museum That Lives Outdoors</p>
         </div>
     </section>
 
     <!-- Main Content -->
     <section class="content-section">
         <div class="container">
-            <!-- ============ TEAM: ADD YOUR CONTENT HERE ============ -->
-            
-           In Finland, the forest is everywhere the most important and diverse natural environment, shaping people, communities, and society. The Finnish Forest Museum Lusto showcases this relationship through exhibitions and aims to share Finland’s forest culture globally, with the ambition of achieving UNESCO Intangible Cultural Heritage recognition. Yet what Lusto lacks is direct engagement with the living forest.
-The MetsäMuse project bridges this gap by extending the museum into the Punkaharju research forests, just two kilometers from Lusto. Managed by the Natural Resources Institute of Finland (Luke), the forest hosts more than 100 tree species, including Finland’s tallest stands. They are not only landscapes of beauty but also living laboratories of biodiversity, climate research, and cultural memory.
-At the center of the project is the MetsäMuse mobile application, which turns forest walks into immersive journeys. Acting as a digital extension of the museum, it offers layered stories, soundscapes, and seasonal prompts that make each tree a point of cultural, ecological, and historical connection. With AI image recognition, visitors can identify species and access knowledge drawn from Luke’s research and Lusto’s collections. Offline maps and pre-linked data ensure accessibility without requiring users to share their live location.
-By blending digital technology with lived forest experiences, MetsäMuse safeguards Finland’s forest culture as intangible heritage and advances Lusto’s pathway to UNESCO recognition.
+            <!-- Flip Card -->
+            <div class="flip-card-container">
+                <div class="flip-card" id="mmFlip">
+                    <div class="flip-card-inner">
+                        <!-- FRONT SIDE -->
+                        <article class="panel front" aria-label="Short intro">
+                            <h3>A Museum That Lives Outdoors</h3>
+                            <p>
+                                The Finnish Forest Museum <strong>Lusto</strong> celebrates the enduring bond 
+                                between people and forests, showcasing how deeply they shape Finnish life and identity.
+                            </p>
+                            <p>
+                                The <strong>MetsäMuse Project</strong> bridges the gap between museum and forest, 
+                                extending the experience into the <strong>Punkaharju research forests</strong>.
+                            </p>
+                            <p class="flip-tip">Click to read the full story</p>
+                            <div class="actions">
+                                <button class="btn-flip" type="button" data-flip="true">Read More →</button>
+                            </div>
+                        </article>
 
-            
-            <!-- ============ END CONTENT AREA ============ -->
+                        <!-- BACK SIDE -->
+                        <article class="panel back" aria-label="Full story">
+                            <h3>The Full Story</h3>
+                            <p>
+                                The Finnish Forest Museum <strong>Lusto</strong> celebrates the enduring bond between 
+                                people and forests, showcasing how deeply they shape Finnish life and identity. While 
+                                the museum preserves this heritage within its walls, it still lacks direct engagement 
+                                with the living forests it represents.
+                            </p>
+                            <p>
+                                The <strong>MetsäMuse Project</strong> bridges this gap by extending the museum 
+                                experience just two kilometers away into the <strong>Punkaharju research forests</strong>, 
+                                managed by the <strong>Natural Resources Institute of Finland (Luke)</strong>. These 
+                                forests, home to more than one hundred tree species, are living archives of biodiversity, 
+                                climate research, and cultural memory.
+                            </p>
+                            <p>
+                                Through the <strong>MetsäMuse mobile app</strong>, visitors can explore trails, listen 
+                                to forest stories, and experience how research meets tradition. By connecting digital 
+                                storytelling with ecological understanding, MetsäMuse strengthens Lusto's mission and 
+                                supports its goal of achieving <strong>UNESCO Intangible Cultural Heritage</strong> recognition.
+                            </p>
+                            <div class="actions">
+                                <button class="btn-flip secondary" type="button" data-flip="false">← Back</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partners Section -->
+            <div class="partners-section">
+                <h2>Our Partners</h2>
+                <div class="partner-cards">
+                    <!-- Lusto -->
+                    <article class="p-card">
+                        <img src="images/lusto.jpg" alt="Lusto — The Finnish Forest Museum">
+                        <div>
+                            <h3>Lusto</h3>
+                            <small>The Finnish Forest Museum</small>
+                            <p>
+                                Lusto preserves and shares Finland's forest heritage through exhibitions, education, 
+                                and collections. Located in Punkaharju, it offers engaging experiences for all ages.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Luke -->
+                    <article class="p-card">
+                        <img src="images/luke.png" alt="Natural Resources Institute Finland">
+                        <div>
+                            <h3>Luke</h3>
+                            <small>Natural Resources Institute Finland</small>
+                            <p>
+                                Luke advances competitive business based on sustainable use of renewable natural 
+                                resources. The institute manages the Punkaharju research forests.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- University of Helsinki -->
+                    <article class="p-card">
+                        <img src="images/Helsinki-2-1.jpg" alt="University of Helsinki">
+                        <div>
+                            <h3>University of Helsinki</h3>
+                            <small>Finland's leading multidisciplinary university</small>
+                            <p>
+                                Known for high-quality research and education across eleven faculties, contributing 
+                                significantly to science, culture, and society.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h2>Our Team</h2>
+                <div class="team-grid">
+                    <!-- Gungun -->
+                    <div class="team-member">
+                        <img src="images/gungun.jpeg" alt="Gungun">
+                        <h3>Gungun</h3>
+                        <p>Third-year PhD Student</p>
+                        <small>Department of Anthropology, Michigan State University</small>
+                    </div>
+
+                    <!-- Harry -->
+                    <div class="team-member">
+                        <img src="images/harry.png" alt="Harry">
+                        <h3>Harry</h3>
+                        <p>Third-year PhD Student</p>
+                        <small>Department of English, Michigan State University</small>
+                    </div>
+
+                    <!-- Yun -->
+                    <div class="team-member">
+                        <img src="images/Yun.JPG" alt="Yun">
+                        <h3>Yun</h3>
+                        <p>Sixth-year PhD Candidate</p>
+                        <small>Department of History, Michigan State University</small>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -89,9 +567,30 @@ By blending digital technology with lived forest experiences, MetsäMuse safegua
 
     <!-- JavaScript - DO NOT EDIT -->
     <script src="js/main.js"></script>
+    
+    <!-- Flip Card Script -->
+    <script>
+        (function(){
+            const card = document.getElementById('mmFlip');
+            card.addEventListener('click', function(e){
+                const t = e.target.closest('[data-flip]');
+                if(!t) return;
+                const toFlip = t.getAttribute('data-flip') === 'true';
+                card.classList.toggle('is-flipped', toFlip);
+            });
+            card.addEventListener('keydown', function(e){
+                if(e.key === 'Escape'){ card.classList.remove('is-flipped'); }
+            });
+        })();
+    </script>
+    <!-- Fallback: hide loader on DOM ready if main.js didn't run (debugging aid) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                var l = document.querySelector('.loader');
+                if (l && !l.classList.contains('hidden')) l.classList.add('hidden');
+            } catch (e) { /* ignore */ }
+        });
+    </script>
 </body>
 </html>
-
-
-
-

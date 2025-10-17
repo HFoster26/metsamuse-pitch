@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - MetsäMuse</title>
+    <meta name="description" content="Explore MetsäMuse app features: offline GPS trails, AI species recognition, and layered storytelling that connects ecology with culture.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles specific to features page */
+        .content-section {
+            background: rgba(74, 124, 44, 0.10); /* match other pages */
+            padding: 2.5rem 0;
+        }
+
+        /* Hero header styling consistent with other pages */
+        .page-header {
+            position: relative;
+            background-color: #2d5016; /* fallback color */
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('images/feature background.png');
+            /* make the hero image full-bleed horizontally and cover the header area */
+            background-size: cover;
+            /* nudge focal point upward to show the upper part of the image */
+            background-position: center 28%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .page-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: 1;
+        }
+
+        .page-header .container { position: relative; z-index: 2; }
+
+        /* Keep cover behavior across breakpoints but slightly nudge the focal point */
+        @media (max-width: 1400px) {
+            /* slightly higher focal point on large screens */
+            .page-header::before { background-position: center 30%; }
+        }
+
+        @media (max-width: 1024px) {
+            /* mid screens */
+            .page-header::before { background-position: center 34%; }
+        }
+
+        @media (max-width: 768px) {
+            /* mobile/tablet */
+            .page-header::before { background-position: center 30%; }
+        }
+
+        .intro-section {
+            background: linear-gradient(180deg, rgba(234,245,233,1) 0%, rgba(244,250,242,1) 100%); /* subtle green-tinted white */
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border-top: 4px solid #4a7c2c;
+            line-height: 1.8;
+            color: #444; /* slightly darker text for contrast */
+        }
+
+        .intro-section p {
+            margin: 1rem 0;
+        }
+
+        /* App badges */
+        .app-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 10px;
+            background: #4a7c2c;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #3d6823;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .store-badge:hover {
+            transform: translateY(-2px);
+            background: #3d6823;
+        }
+
+        /* KPI stats */
+        .kpi-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .kpi-item {
+            background: white;
+            border: 1px solid #e1eee8;
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .kpi-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .kpi-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-item p {
+            margin: 0;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* Deliverables section */
+        .deliverables-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border-top: 4px solid #4a7c2c;
+        }
+
+        .deliverables-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .deliverables-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Features grid */
+        .features-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e1eee8;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .feature-image {
+            aspect-ratio: 4/3;
+            background: linear-gradient(120deg, #e6f3ec, #d9efe5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .feature-image .placeholder {
+            font-weight: 600;
+            color: #2d5016;
+            font-size: 1rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-content h3 {
+            color: #2d5016;
+            font-size: 1.3rem;
+            margin: 0 0 0.8rem;
+        }
+
+        .feature-content p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .feature-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-content li {
+            color: #666;
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .feature-content li:before {
+            content: "🌲";
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Callout */
+        .callout-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+            border: 1px solid #e1eee8;
+            border-left: 4px solid #4a7c2c;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .callout-box p {
+            margin: 0;
+            color: #2d5016;
+            line-height: 1.8;
+            max-width: 60ch;
+            flex: 1;
+        }
+
+        .callout-btn {
+            display: inline-block;
+            background: #4a7c2c;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #3d6823;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .callout-btn:hover {
+            transform: translateY(-2px);
+            background: #3d6823;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Match about page header title styles */
+        .page-header h1,
+        .page-header .page-subtitle {
+            color: white;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .page-header h1 { font-size: 3.6rem; margin: 0; }
+        .page-header .page-subtitle { font-size: 1.25rem; margin-top: 0.6rem; }
+
+        @media (max-width: 1024px) {
+            .page-header h1 { font-size: 2.8rem; }
+            .page-header .page-subtitle { font-size: 1.1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .page-header .page-subtitle { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="tree-loader"></div>
+            <p>Entering the forest...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar - DO NOT EDIT -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌲</span>
+                <span class="logo-text">MetsäMuse</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="audience.html" class="nav-link">Audience</a>
+                <a href="background.html" class="nav-link">Background</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Features</h1>
+            <p class="page-subtitle">Walk, listen, and learn with MetsäMuse</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Intro Section -->
+            <div class="intro-section">
+                <p>
+                    The MetsäMuse mobile app turns Punkaharju's research forests into a living, digital museum
+                    blending GPS-guided exploration, AI species recognition, and layered storytelling from Lusto Museum and Luke.
+                </p>
+
+                <div class="app-badges" aria-label="Download links">
+                    <a class="store-badge" href="#" aria-label="Download on the App Store">📱 App Store</a>
+                    <a class="store-badge" href="#" aria-label="Get it on Google Play">📱 Google Play</a>
+                </div>
+            </div>
+
+            <!-- KPI Stats -->
+            <div class="kpi-stats" aria-label="App features">
+                <div class="kpi-item">
+                    <div class="icon">🌲</div>
+                    <p>100+ tree species identified through AI</p>
+                </div>
+                <div class="kpi-item">
+                    <div class="icon">🗺️</div>
+                    <p>Offline GPS-based forest trails</p>
+                </div>
+                <div class="kpi-item">
+                    <div class="icon">🎧</div>
+                    <p>Immersive natural soundscapes</p>
+                </div>
+            </div>
+
+            <!-- Deliverables & Outcomes -->
+            <div class="deliverables-section">
+                <h2>Deliverables &amp; Outcomes</h2>
+                <p>
+                    By the end of the project period, <strong>MetsäMuse</strong> will be the hub for the app and the Lusto–Luke collaboration
+                    outlining the vision to connect ecological research with cultural heritage in the <em>Punkaharju research forests</em>.
+                    The site provides forest background, project updates, and direct app downloads.
+                </p>
+                <p>
+                    The <strong>MetsäMuse Mobile App</strong> will transform on-site walks into guided, multisensory journeys. No QR codes or extra devices required.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-section">
+                <h2>What You Will Experience with MetsäMuse Mobile App</h2>
+
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <article class="feature-card">
+                        <div class="feature-image">
+                            <img src="images/interactivemap.png" alt="Interactive offline forest map preview">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Offline Maps &amp; GPS Trails</h3>
+                            <p>
+                                Explore confidently with downloadable, privacy-first maps. GPS reveals nearby points without needing mobile data or QR codes.
+                            </p>
+                            <ul>
+                                <li>Interactive map with trail prompts</li>
+                                <li>Works fully offline</li>
+                                <li>No live location sharing required</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Feature 2 -->
+                    <article class="feature-card">
+                        <div class="feature-image">
+                            <img src="images/aiimageanalysis.png" alt="AI tree species recognition in action">
+                        </div>
+                        <div class="feature-content">
+                            <h3>AI Species Recognition</h3>
+                            <p>
+                                Identify trees instantly and dive into Luke's research: seasonal cycles, ecological roles, and conservation insights.
+                            </p>
+                            <ul>
+                                <li>Identify 100+ species on-site</li>
+                                <li>See seasonal changes and phenology</li>
+                                <li>Linked research profiles from Luke</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Feature 3 -->
+                    <article class="feature-card">
+                        <div class="feature-image">
+                            <img src="images/soundscape.png" alt="Audio stories and cultural narratives">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Layered Storytelling</h3>
+                            <p>
+                                Hear soundscapes, oral histories, and cultural narratives from Lusto's collections. Each stop becomes a living exhibit.
+                            </p>
+                            <ul>
+                                <li>Site-specific audio &amp; soundscapes</li>
+                                <li>Oral histories &amp; archival media</li>
+                                <li>Context that blends culture &amp; ecology</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Callout -->
+                <div class="callout-box">
+                    <p>
+                        Accessible online and offline, MetsäMuse bridges technology, ecology, and culture, deepening public understanding
+                        of Finland's forest heritage.
+                    </p>
+                    <a class="callout-btn" href="#outcomes">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - DO NOT EDIT WITHOUT PERMISSION -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>MetsäMuse</h4>
+                <p>Connecting people with Finland's forest heritage through digital innovation.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MetsäMuse - CHI Fellowship Project</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript - DO NOT EDIT -->
+    <script src="js/main.js"></script>
+</body>
+</html>
