@@ -483,3 +483,24 @@ body {
 .content-section li {
     margin-bottom: 0.5rem;
 }
+
+/* Audience page background (root audience.html) */
+.page-header.audience {
+    position: relative;
+    padding: 10rem 0 6rem;
+    background-image: url('../images/ycBf_nsT_400x400.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--white);
+}
+
+.page-header.audience::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.page-header.audience .container { position: relative; z-index: 2; }
