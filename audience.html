@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audience - MetsäMuse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles specific to audience page */
+        .intro-text {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .audience-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-content: center;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .audience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #4a7c2c;
+            flex: 0 0 calc(33.333% - 1.5rem);
+            max-width: 400px;
+        }
+        
+        .audience-card:nth-child(4),
+        .audience-card:nth-child(5) {
+            flex: 0 0 calc(33.333% - 1.5rem);
+        }
+
+        .audience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .audience-card h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icon {
+            font-size: 1.8rem;
+        }
+
+        .audience-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="tree-loader"></div>
+            <p>Entering the forest...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar - DO NOT EDIT -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌲</span>
+                <span class="logo-text">MetsäMuse</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="audience.html" class="nav-link">Audience</a>
+                <a href="background.html" class="nav-link">Background</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Audience</h1>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <!-- ============ TEAM: ADD YOUR CONTENT HERE ============ -->
+            
+            <div class="intro-text">
+                <p>
+                    The primary audiences of Metsä Muse are broad and diverse, ranging from citizen scientists, 
+                    hobbyists, and nature enthusiasts who engage with the platform to explore and share observations, 
+                    to expert naturalists and researchers who contribute their knowledge and use the data for scientific 
+                    and conservation purposes. It also serves educators and students who integrate it into learning and 
+                    teaching activities, as well as conservation organizations and policymakers who draw on its insights 
+                    for planning and monitoring biodiversity. Beyond these groups, Metsä Muse also appeals to the wider 
+                    public, offering an accessible way for anyone with an interest in the natural world to discover, 
+                    learn about, and connect with species and environments around them.
+                </p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3><span class="icon">🔬</span> Citizen Scientists & Enthusiasts</h3>
+                    <p>
+                        Hobbyists and nature lovers who actively explore and document the natural world, 
+                        sharing their observations and discoveries with a passionate community.
+                    </p>
+                </div>
+
+                <div class="audience-card">
+                    <h3><span class="icon">🎓</span> Researchers & Naturalists</h3>
+                    <p>
+                        Expert scientists and naturalists who contribute specialized knowledge and utilize 
+                        platform data for rigorous research and conservation initiatives.
+                    </p>
+                </div>
+
+                <div class="audience-card">
+                    <h3><span class="icon">📚</span> Educators & Students</h3>
+                    <p>
+                        Teachers and learners who integrate Metsä Muse into educational curricula, 
+                        fostering environmental awareness and hands-on scientific learning.
+                    </p>
+                </div>
+
+                <div class="audience-card">
+                    <h3><span class="icon">🌍</span> Conservation Organizations</h3>
+                    <p>
+                        Environmental groups and policymakers who leverage biodiversity insights 
+                        for strategic planning, monitoring, and evidence-based decision-making.
+                    </p>
+                </div>
+
+                <div class="audience-card">
+                    <h3><span class="icon">🌿</span> General Public</h3>
+                    <p>
+                        Anyone curious about nature, seeking an accessible way to discover, learn about, 
+                        and meaningfully connect with the species and environments around them.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- ============ END CONTENT AREA ============ -->
+        </div>
+    </section>
+
+    <!-- Footer - DO NOT EDIT WITHOUT PERMISSION -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>MetsäMuse</h4>
+                <p>Connecting people with Finland's forest heritage through digital innovation.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MetsäMuse - CHI Fellowship Project</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript - DO NOT EDIT -->
+    <script src="js/main.js"></script>
+</body>
+</html>

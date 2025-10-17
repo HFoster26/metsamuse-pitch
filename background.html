@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background - MetsäMuse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles specific to background page */
+        .section-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border-top: 4px solid #4a7c2c;
+        }
+
+        .section-container h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-container h3 {
+            color: #4a7c2c;
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-container p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .data-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #4a7c2c;
+        }
+
+        .data-category h4 {
+            color: #2d5016;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .data-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .data-category li {
+            color: #666;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .data-category li:before {
+            content: "🌲";
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        .data-category.cultural li:before {
+            content: "📖";
+        }
+
+        .data-category li.animal:before {
+            content: "🦌";
+        }
+
+        .data-category.cultural li.artifacts:before {
+            content: "🪵";
+        }
+
+        .data-category.cultural li.stories:before {
+            content: "🌙";
+        }
+
+        .sources-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .sources-list h4 {
+            color: #2d5016;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .sources-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sources-list li {
+            color: #666;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            line-height: 1.6;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .sources-list li img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .competitive-advantage {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border-left: 4px solid #4a7c2c;
+        }
+
+        .competitive-advantage p {
+            color: #2d5016;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="tree-loader"></div>
+            <p>Entering the forest...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar - DO NOT EDIT -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌲</span>
+                <span class="logo-text">MetsäMuse</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="audience.html" class="nav-link">Audience</a>
+                <a href="background.html" class="nav-link">Background</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Background</h1>
+            <p class="page-subtitle">Research foundation and data sources</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Data, Information, Content Section -->
+            <div class="section-container">
+                <h2>📊 Data, Information, Content</h2>
+                
+                <div class="data-grid">
+                    <div class="data-category">
+                        <h4>Environmental Data</h4>
+                        <ul>
+                            <li>Plant identification and classification</li>
+                            <li class="animal">Animal species</li>
+                        </ul>
+                    </div>
+
+                    <div class="data-category cultural">
+                        <h4>Cultural Data</h4>
+                        <ul>
+                            <li class="stories">Stories, Folklore, Urban Legends</li>
+                            <li class="artifacts">Historical artifacts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-list">
+                    <h4>Data Sources</h4>
+                    <ul>
+                        <li>
+                            <img src="images/Helsinki-2-1.jpg" alt="University of Helsinki">
+                            <span>University of Helsinki</span>
+                        </li>
+                        <li>
+                            <img src="images/FANC.jpg" alt="FANC">
+                            <span>Luonnonsuojeluliitto (Finnish Association of Nature Conservation, FANC)</span>
+                        </li>
+                        <li>
+                            <img src="images/lusto.jpg" alt="Lusto">
+                            <span>Lusto - The Finnish Forest Museum</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Environmental Scan Section -->
+            <div class="section-container">
+                <h2>🔍 Environmental Scan</h2>
+                
+                <p>
+                    MetsäMuse is positioned to create an entirely new category within the forest guide app market. 
+                    It synergizes the best features of similar apps as its closest competitors such as AllTrails' 
+                    navigation reliability, iNaturalist's community verification, VoiceMap's audio storytelling, 
+                    Never Alone's cultural authenticity. In addition to all these features, MetsäMuse fosters 
+                    culturally grounded soundscapes and seasonal wisdom prompts.
+                </p>
+
+                <div class="competitive-advantage">
+                    <p>
+                        <strong>Competitive Advantage:</strong> The absence of any competitor combining Finnish 
+                        forest cultural heritage with acoustic ecology, seasonal cultural knowledge, and 
+                        intergenerational community features represents a clear competitive advantage. Success 
+                        will depend on maintaining cultural authenticity through community partnership and 
+                        developing intuitive technology that enhances rather than replaces forest experiences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - DO NOT EDIT WITHOUT PERMISSION -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>MetsäMuse</h4>
+                <p>Connecting people with Finland's forest heritage through digital innovation.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MetsäMuse - CHI Fellowship Project</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript - DO NOT EDIT -->
+    <script src="js/main.js"></script>
+</body>
+</html>
